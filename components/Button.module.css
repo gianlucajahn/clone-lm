@@ -1,0 +1,84 @@
+.base {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  font-family: "Roboto", Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 120ms ease, box-shadow 120ms ease;
+}
+
+/* Solid black pill — primary calls to action */
+.primary {
+  background: #1f1f1f;
+  color: #fff;
+  height: 34px;
+  border-radius: 18px;
+  padding: 0 18px 0 14px;
+}
+.primary:hover {
+  background: #333537;
+}
+
+/* Transparent pill — top-bar secondary actions */
+.ghost {
+  background: transparent;
+  color: #444746;
+  height: 40px;
+  border-radius: 20px;
+  padding: 0 14px;
+}
+.ghost:hover {
+  background: #e9eaec;
+}
+
+/* White outlined pill — neutral actions */
+.outline {
+  background: #fff;
+  color: #1f1f1f;
+  height: 40px;
+  border: 1px solid #d9dce0;
+  border-radius: 20px;
+  padding: 0 18px;
+}
+.outline:hover {
+  background: #f7f8f8;
+}
+
+/* Transparent pill with a light-blue hover tint (top-bar actions) */
+.ghostBlue {
+  background: transparent;
+  color: #444746;
+  height: 40px;
+  border-radius: 20px;
+  padding: 0 14px;
+}
+.ghostBlue:hover {
+  background: #e8f0fe;
+}
+
+/* White outlined pill with a light-blue hover tint */
+.outlineBlue {
+  background: #fff;
+  color: #1f1f1f;
+  height: 40px;
+  border: 1px solid #d9dce0;
+  border-radius: 20px;
+  padding: 0 18px;
+}
+.outlineBlue:hover {
+  background: #e8f0fe;
+}
+
+/* Disabled look — keep the outline, dim it, not-allowed cursor, no hover tint */
+.muted {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.muted:hover {
+  background: #fff;
+}

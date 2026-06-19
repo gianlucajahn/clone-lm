@@ -1,0 +1,191 @@
+/* ===== Reset (ported from base design) ===== */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  font-family: "Roboto", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+::placeholder {
+  color: #80868b;
+}
+
+/* ===== Material Symbols base class ===== */
+.material-symbols-outlined {
+  font-family: "Material Symbols Outlined";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: "liga";
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== Loading / animation utilities ===== */
+@keyframes cl-shimmer {
+  0% {
+    background-position: -400px 0;
+  }
+  100% {
+    background-position: 400px 0;
+  }
+}
+.cl-skeleton {
+  background: linear-gradient(90deg, #e9ebf2 25%, #f4f6fb 37%, #e9ebf2 63%);
+  background-size: 800px 100%;
+  animation: cl-shimmer 1.4s linear infinite;
+  border-radius: 8px;
+}
+
+@keyframes cl-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.cl-spin {
+  display: inline-flex;
+  animation: cl-spin 0.9s linear infinite;
+}
+
+/* Source row "lands" in its new label after a drag-and-drop */
+@keyframes cl-bump {
+  0% {
+    transform: scale(0.88);
+    opacity: 0.5;
+  }
+  55% {
+    transform: scale(1.04);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+.cl-bump {
+  animation: cl-bump 0.34s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Fluid, colour-shifting gradient for the "Neu organisieren" loading state */
+@keyframes cl-fluid {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+.cl-fluid-bg {
+  background: linear-gradient(
+    120deg,
+    #c6efd6,
+    #ffdcc4,
+    #ffd0d0,
+    #d6dcff,
+    #e9d2ff,
+    #c6efd6
+  );
+  background-size: 320% 320%;
+  animation: cl-fluid 9s ease-in-out infinite;
+}
+@keyframes cl-blob-a {
+  0%,
+  100% {
+    transform: translate(-8%, -6%) scale(1);
+  }
+  33% {
+    transform: translate(20%, 12%) scale(1.25);
+  }
+  66% {
+    transform: translate(6%, 26%) scale(0.9);
+  }
+}
+@keyframes cl-blob-b {
+  0%,
+  100% {
+    transform: translate(10%, 8%) scale(1.05);
+  }
+  33% {
+    transform: translate(-18%, -12%) scale(0.92);
+  }
+  66% {
+    transform: translate(-6%, -24%) scale(1.2);
+  }
+}
+.cl-blob-a {
+  animation: cl-blob-a 11s ease-in-out infinite;
+}
+.cl-blob-b {
+  animation: cl-blob-b 13s ease-in-out infinite;
+}
+
+@keyframes cl-dash {
+  to {
+    stroke-dashoffset: -100;
+  }
+}
+
+/* Left-to-right shine sweep (premium "glänz" effect on the generating row) */
+@keyframes cl-shine {
+  0% {
+    transform: translateX(-110%);
+  }
+  100% {
+    transform: translateX(110%);
+  }
+}
+
+/* Apple-like thin scrollbar with a transparent track */
+/* App-wide scrollbars (NotebookLM style): light-grey rounded thumb, no track,
+   no up/down arrow buttons. Applies to every scroll area + dropdown. */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #cdd0d6 transparent;
+}
+*::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background: #cdd0d6;
+  border-radius: 10px;
+  border: 3px solid transparent;
+  background-clip: padding-box;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: #b6bac1;
+  background-clip: padding-box;
+}
+*::-webkit-scrollbar-button {
+  display: none;
+  width: 0;
+  height: 0;
+}
+*::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Horizontal style picker (infographic popup) still needs explicit overflow */
+.cl-hscroll {
+  overflow-x: auto;
+}

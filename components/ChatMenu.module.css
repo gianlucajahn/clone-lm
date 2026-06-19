@@ -1,0 +1,42 @@
+.menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  min-width: 230px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.16);
+  padding: 6px;
+  z-index: 20;
+}
+
+.item {
+  padding: 9px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #1f1f1f;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.item:hover {
+  background: #f1f3f4;
+}
+
+.itemDisabled {
+  color: #9aa0a6;
+  cursor: default;
+}
+
+.itemDisabled:hover {
+  background: transparent;
+}
+
+.note {
+  padding: 8px 12px 6px;
+  font-size: 12px;
+  font-style: italic;
+  color: #80868b;
+  line-height: 1.4;
+  white-space: nowrap;
+}

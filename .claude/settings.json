@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(head -n 3 \"/c/Users/Gianluca/.claude/projects/d--Repositories-clone-lm/875217d2-ca54-4620-a8ff-9556b8f9061d.jsonl\")",
+      "Read(//c/Users/Gianluca/.claude/projects/d--Repositories-clone-lm/**)",
+      "Bash(awk 'NR==179' base.html)",
+      "Bash(awk 'NR==171' base.html)",
+      "Bash(awk 'NR>=170 && NR<=185 {printf \"%d: %d chars\\\\n\", NR, length\\($0\\)}' base.html)",
+      "Bash(awk 'NR==180' base.html)",
+      "Bash(node -e \"const fs=require\\('fs'\\);const raw=fs.readFileSync\\('template_raw.json','utf8'\\);const html=JSON.parse\\(raw\\);fs.writeFileSync\\('template_decoded.html',html\\);console.log\\('decoded length:',html.length\\);\")",
+      "PowerShell(npm install --no-fund --no-audit 2>&1)",
+      "PowerShell(npm install next@\"^14.2\" --no-fund --no-audit 2>&1)",
+      "PowerShell(node -p \"require\\('./node_modules/next/package.json'\\).version\")",
+      "Bash(npx tsc *)",
+      "Bash(echo \"--- tsc exit: $? ---\")",
+      "Skill(claude-api)",
+      "Skill(claude-api:*)",
+      "Bash(:)"
+    ]
+  }
+}

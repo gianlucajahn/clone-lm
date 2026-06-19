@@ -1,0 +1,254 @@
+.box {
+  background: #f9f9f9;
+  border: 1px solid #dde1eb;
+  border-radius: 14px;
+  padding: 14px;
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+.box:focus-within {
+  border-color: #1a73e8;
+  box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.15);
+}
+
+.input {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 14px;
+  color: #1f1f1f;
+  margin-bottom: 8px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ddWrap {
+  position: relative;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 34px;
+  padding: 0 10px 0 12px;
+  border: 1px solid #d9dce0;
+  border-radius: 18px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1f1f1f;
+  background: #fff;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background-color 120ms ease;
+}
+.pill:hover {
+  background: #f1f3f4;
+}
+
+.menu {
+  position: absolute;
+  top: 42px;
+  left: 0;
+  min-width: 290px;
+  background: #fff;
+  border: 1px solid #e6e8eb;
+  border-radius: 12px;
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.16);
+  z-index: 50;
+  padding: 6px 0;
+}
+.menuItem {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 10px 18px;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  cursor: pointer;
+  text-align: left;
+}
+.menuItem:hover {
+  background: #f1f3f4;
+}
+.menuIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 22px;
+}
+.menuText {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.menuLabel {
+  font-size: 14px;
+  color: #1f1f1f;
+  line-height: 1.3;
+}
+.menuDesc {
+  font-size: 12.5px;
+  color: #5f6368;
+  line-height: 1.35;
+  margin-top: 1px;
+}
+.menuItemDisabled,
+.menuItemDisabled:hover {
+  cursor: not-allowed;
+  background: transparent;
+}
+
+.searchBtn {
+  margin-left: auto;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #edeff2;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 120ms ease;
+}
+.searchBtn:hover {
+  background: #e8f0fe;
+}
+
+.searchBtnActive {
+  background: #3d5afe;
+}
+.searchBtnActive:hover {
+  background: #3450e0;
+}
+
+.running {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px;
+  background: #f1f3fb;
+  border-radius: 14px;
+  margin-top: 12px;
+  font-size: 14px;
+  color: #3c4043;
+}
+
+.spin {
+  display: inline-flex;
+  animation: srspin 0.9s linear infinite;
+}
+@keyframes srspin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.card {
+  margin-top: 12px;
+  background: #f1f3fb;
+  border-radius: 14px;
+  padding: 12px 14px;
+}
+
+.cardHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1f1f1f;
+  margin-bottom: 6px;
+}
+
+.list {
+  max-height: 280px;
+  overflow-y: auto;
+  background: #fff;
+  border-radius: 10px;
+  padding: 2px 10px;
+}
+
+.item {
+  display: flex;
+  gap: 10px;
+  padding: 10px 0;
+  border-top: 1px solid #eceef5;
+  cursor: pointer;
+}
+.item:first-child {
+  border-top: none;
+}
+
+.itemTitle {
+  font-size: 13.5px;
+  color: #1f1f1f;
+  font-weight: 500;
+  line-height: 1.3;
+}
+.itemSnippet {
+  font-size: 12.5px;
+  color: #5f6368;
+  line-height: 1.4;
+  margin-top: 2px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 12px;
+}
+
+.del {
+  background: none;
+  border: none;
+  color: #1f1f1f;
+  font-size: 14px;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.importBtn {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 38px;
+  padding: 0 18px;
+  border: none;
+  border-radius: 19px;
+  background: #3d5afe;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background-color 120ms ease;
+}
+.importBtn:hover {
+  background: #3450e0;
+}
+.importBtn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.error {
+  font-size: 13px;
+  color: #c5392e;
+  margin-top: 10px;
+}
