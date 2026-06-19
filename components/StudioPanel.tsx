@@ -61,6 +61,7 @@ export default function StudioPanel({
   const [detail, setDetail] = useState<Artifact | null>(null);
   const [opening, setOpening] = useState<string | null>(null);
   const [creatingNote, setCreatingNote] = useState(false);
+  const [deleting, setDeleting] = useState<string | null>(null);
   const [configKind, setConfigKind] = useState<string | null>(null);
   const [toast, setToast] = useState<string | null>(null);
 
@@ -125,11 +126,19 @@ export default function StudioPanel({
   };
 
   const remove = async (id: string) => {
+    if (deleting) return;
     if (detail?.id === id) setDetail(null);
-    await fetch(`/api/notebooks/${notebookId}/artifacts/${id}`, {
-      method: "DELETE",
-    }).catch(() => {});
-    onChanged();
+    setDeleting(id);
+    try {
+      await fetch(`/api/notebooks/${notebookId}/artifacts/${id}`, {
+        method: "DELETE",
+      });
+    } catch {
+      /* ignore */
+    } finally {
+      onChanged();
+      setDeleting(null);
+    }
   };
 
   if (detail) {
@@ -256,17 +265,17 @@ export default function StudioPanel({
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.22, ease: "easeOut", delay: Math.min(i * 0.035, 0.3) }}
-                onClick={() => open(a.id)}
+                onClick={() => deleting !== a.id && open(a.id)}
                 style={{
                   display: "flex",
                   alignItems: "center",
                   gap: 12,
                   padding: "10px 8px",
                   borderRadius: 10,
-                  cursor: "pointer",
+                  cursor: deleting === a.id ? "default" : "pointer",
                   position: "relative",
-                  opacity: opening === a.id ? 0.55 : 1,
-                  transition: "background-color 120ms ease",
+                  opacity: opening === a.id || deleting === a.id ? 0.55 : 1,
+                  transition: "background-color 120ms ease, opacity 120ms ease",
                 }}
                 onMouseEnter={(e) => (e.currentTarget.style.background = "#f4f5fb")}
                 onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
@@ -287,7 +296,7 @@ export default function StudioPanel({
                   </div>
                   <div style={{ fontSize: 12.5, color: "#5f6368", marginTop: 1 }}>{sub}</div>
                 </div>
-                {opening === a.id ? (
+                {opening === a.id || deleting === a.id ? (
                   <span className="cl-spin" style={{ flex: "none", display: "inline-flex", marginRight: 6 }}>
                     <Icon name="progress_activity" size={20} color={meta.color} />
                   </span>

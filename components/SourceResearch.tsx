@@ -146,8 +146,19 @@ export default function SourceResearch({ autoFocus = false }: { autoFocus?: bool
     return () => clearTimeout(t);
   }, [autoFocus]);
 
+  // Clicking anywhere in the box that isn't a control (or a result row) should
+  // focus the search field — so the focus ring shows and the user can type,
+  // not only when they hit the thin input line itself.
+  const focusFromBox = (e: React.MouseEvent) => {
+    const t = e.target as HTMLElement;
+    if (t.closest("button, input, a")) return;
+    if (t.closest(`.${styles.card}, .${styles.running}`)) return;
+    e.preventDefault(); // keep the click from stealing focus / selecting the box
+    inputRef.current?.focus();
+  };
+
   return (
-    <div className={styles.box}>
+    <div className={styles.box} onMouseDown={focusFromBox}>
       <input
         ref={inputRef}
         className={styles.input}

@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import NotebookGlyph from "./NotebookGlyph";
 import NotebookMenu from "./NotebookMenu";
+import Icon from "./Icon";
 import { formatDate, type Notebook } from "@/lib/notebooks";
 import styles from "./NotebookCard.module.css";
 
@@ -22,6 +23,7 @@ export default function NotebookCard({
 }) {
   const [editing, setEditing] = useState(false);
   const [draft, setDraft] = useState(notebook.title);
+  const [loading, setLoading] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -36,13 +38,20 @@ export default function NotebookCard({
     setEditing(false);
   };
 
+  // Show an in-card spinner the moment the notebook is opened — the route can
+  // take 1–2s to load, and the list stays mounted until it does.
+  const open = () => {
+    if (editing || loading) return;
+    setLoading(true);
+    onOpen(notebook.id);
+  };
+
   return (
     <div
       className={styles.card}
-      style={{ background: CARD_BG }}
-      onClick={() => {
-        if (!editing) onOpen(notebook.id);
-      }}
+      style={{ background: CARD_BG, cursor: loading ? "default" : undefined }}
+      aria-busy={loading}
+      onClick={open}
     >
       <div style={{ position: "absolute", top: 12, right: 12 }}>
         <NotebookMenu
@@ -63,7 +72,13 @@ export default function NotebookCard({
           justifyContent: "center",
         }}
       >
-        <NotebookGlyph size={44} />
+        {loading ? (
+          <span className="cl-spin" style={{ display: "inline-flex" }}>
+            <Icon name="progress_activity" size={40} color="#3d5afe" />
+          </span>
+        ) : (
+          <NotebookGlyph size={44} />
+        )}
       </div>
 
       {editing ? (

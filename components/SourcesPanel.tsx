@@ -263,7 +263,7 @@ function LabelGroup({
           alignItems: "center",
           gap: 4,
           height: 40,
-          padding: "0 5px 0 16px",
+          padding: "0 5px 0 12px",
           borderRadius: 8,
           cursor: "pointer",
         }}

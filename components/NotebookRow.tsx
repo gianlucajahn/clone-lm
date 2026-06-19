@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import NotebookGlyph from "./NotebookGlyph";
 import NotebookMenu from "./NotebookMenu";
+import Icon from "./Icon";
 import { formatDate, type Notebook } from "@/lib/notebooks";
 import styles from "./NotebookRow.module.css";
 
@@ -20,6 +21,7 @@ export default function NotebookRow({
 }) {
   const [editing, setEditing] = useState(false);
   const [draft, setDraft] = useState(notebook.title);
+  const [loading, setLoading] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -34,12 +36,20 @@ export default function NotebookRow({
     setEditing(false);
   };
 
+  // Swap the glyph for a spinner the moment the row is opened — the notebook
+  // route can take 1–2s to load while the list stays mounted.
+  const open = () => {
+    if (editing || loading) return;
+    setLoading(true);
+    onOpen(notebook.id);
+  };
+
   return (
     <div
       className={styles.row}
-      onClick={() => {
-        if (!editing) onOpen(notebook.id);
-      }}
+      style={{ cursor: loading ? "default" : undefined }}
+      aria-busy={loading}
+      onClick={open}
     >
       <div className={styles.titleCell}>
         <div
@@ -52,7 +62,13 @@ export default function NotebookRow({
             justifyContent: "center",
           }}
         >
-          <NotebookGlyph size={22} />
+          {loading ? (
+            <span className="cl-spin" style={{ display: "inline-flex" }}>
+              <Icon name="progress_activity" size={20} color="#3d5afe" />
+            </span>
+          ) : (
+            <NotebookGlyph size={22} />
+          )}
         </div>
         {editing ? (
           <input
