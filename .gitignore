@@ -25,3 +25,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local session notes and editor tooling (may reference secrets; not for the repo)
+/SESSION-TRANSCRIPT.md
+/.claude/
